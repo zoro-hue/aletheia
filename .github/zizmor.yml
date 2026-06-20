@@ -1,0 +1,21 @@
+rules:
+  secrets-outside-env:
+    config:
+      allow:
+        # Shared read-only CI credentials used to avoid Docker Hub rate limits in test jobs.
+        - DOCKERHUB_USERNAME_READ
+        - DOCKERHUB_TOKEN_READ
+        # Shared integration-test credentials intentionally kept together for the multi-provider LLM connection test job.
+        - ALETHEIA_LLM_CONNECTION_OPENAI_KEY
+        - ALETHEIA_LLM_CONNECTION_ANTHROPIC_KEY
+        - ALETHEIA_LLM_CONNECTION_AZURE_KEY
+        - ALETHEIA_LLM_CONNECTION_AZURE_BASE_URL
+        - ALETHEIA_LLM_CONNECTION_AZURE_MODEL
+        - ALETHEIA_LLM_CONNECTION_BEDROCK_ACCESS_KEY_ID
+        - ALETHEIA_LLM_CONNECTION_BEDROCK_SECRET_ACCESS_KEY
+        - ALETHEIA_LLM_CONNECTION_BEDROCK_API_KEY
+        - ALETHEIA_LLM_CONNECTION_BEDROCK_REGION
+        - ALETHEIA_LLM_CONNECTION_VERTEXAI_KEY
+        - ALETHEIA_LLM_CONNECTION_GOOGLEAISTUDIO_KEY
+        # Fern token is generation-only; GitHub write actions are handled by GH_ACCESS_TOKEN in a protected environment.
+        - FERN_TOKEN

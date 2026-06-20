@@ -1,0 +1,28 @@
+name: aletheia
+docs: |
+  ## Authentication
+
+  Authenticate with the API using [Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication), get API keys in the project settings:
+
+  - username: Aletheia Public Key
+  - password: Aletheia Secret Key
+
+  ## Exports
+
+  - OpenAPI spec: https://cloud.aletheia.com/generated/api/openapi.yml
+
+error-discrimination:
+  strategy: status-code
+auth: basic
+imports:
+  commons: commons.yml
+errors:
+  - commons.Error
+  - commons.UnauthorizedError
+  - commons.AccessDeniedError
+  - commons.MethodNotAllowedError
+  - commons.NotFoundError
+headers:
+  X-Aletheia-Sdk-Name: optional<string>
+  X-Aletheia-Sdk-Version: optional<string>
+  X-Aletheia-Public-Key: optional<string>

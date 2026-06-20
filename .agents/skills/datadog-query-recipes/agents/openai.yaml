@@ -1,0 +1,4 @@
+interface:
+  display_name: "Datadog Query Recipes"
+  short_description: "Aletheia production telemetry queries"
+  default_prompt: "Use $datadog-query-recipes to investigate Aletheia production telemetry for a tenant, endpoint, queue, or regression."

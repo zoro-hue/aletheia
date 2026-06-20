@@ -1,0 +1,24 @@
+{
+  "name": "@aletheia/guardrail",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Aletheia Guardrail Sidecar Proxy — real-time LLM request interception and policy enforcement",
+  "main": "src/proxy.ts",
+  "scripts": {
+    "dev": "tsx watch src/proxy.ts",
+    "start": "tsx src/proxy.ts",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@aletheia/shared": "workspace:*",
+    "express": "^4.21.0",
+    "zod": "4.3.6"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.2",
+    "@types/node": "^22.15.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.8.3"
+  }
+}

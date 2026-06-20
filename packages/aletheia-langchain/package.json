@@ -1,0 +1,53 @@
+{
+  "name": "aletheia-langchain",
+  "version": "3.38.20",
+  "engines": {
+    "node": ">=18"
+  },
+  "author": {
+    "name": "Aletheia",
+    "email": "hi@aletheia.com",
+    "url": "https://aletheia.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aletheia/aletheia-js.git",
+    "directory": "aletheia-langchain"
+  },
+  "license": "MIT",
+  "main": "lib/index.cjs.js",
+  "module": "lib/index.mjs",
+  "types": "lib/index.d.ts",
+  "exports": {
+    "require": {
+      "types": "./lib/index.d.ts",
+      "default": "./lib/index.cjs.js"
+    },
+    "import": {
+      "types": "./lib/index.d.mts",
+      "default": "./lib/index.mjs"
+    }
+  },
+  "scripts": {
+    "test": "jest -c jest.config.js",
+    "prepublishOnly": "cd .. && yarn build",
+    "test:integration": "dotenv -- node --experimental-vm-modules ../node_modules/.bin/jest ./test/aletheia-integration.callback.spec.ts"
+  },
+  "files": [
+    "lib",
+    "Readme.md"
+  ],
+  "gitHead": "88f742a137dc84728284aa72eb33f824627a6e38",
+  "dependencies": {
+    "aletheia-core": "workspace:*",
+    "aletheia": "workspace:*"
+  },
+  "peerDependencies": {
+    "@langchain/core": ">=0.1.0",
+    "langchain": ">=0.0.157 <0.4.0"
+  },
+  "devDependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "typedoc": "^0.26.8"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "name": "aletheia",
+  "version": "3.38.4",
+  "engines": {
+    "node": ">=18"
+  },
+  "author": {
+    "name": "Aletheia",
+    "email": "hi@aletheia.com",
+    "url": "https://aletheia.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aletheia/aletheia-js.git",
+    "directory": "aletheia"
+  },
+  "main": "lib/index.cjs.js",
+  "module": "lib/index.mjs",
+  "types": "lib/index.d.ts",
+  "exports": {
+    "require": {
+      "types": "./lib/index.d.ts",
+      "default": "./lib/index.cjs.js"
+    },
+    "import": {
+      "types": "./lib/index.d.mts",
+      "default": "./lib/index.mjs"
+    }
+  },
+  "scripts": {
+    "test": "jest -c jest.config.js",
+    "prepublishOnly": "cd .. && yarn build"
+  },
+  "files": [
+    "lib",
+    "Readme.md"
+  ],
+  "dependencies": {
+    "aletheia-core": "workspace:*"
+  },
+  "gitHead": "4bde70ec7c4fd6707f906ca2e31c47b32474b25e",
+  "devDependencies": {
+    "typedoc": "^0.26.8"
+  }
+}
