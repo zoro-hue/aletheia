@@ -1,7 +1,5 @@
 <div align="center">
 
-<img width="100%" alt="Aletheia banner" src="https://raw.githubusercontent.com/yourusername/aletheia/main/docs/assets/banner-placeholder.png" />
-
 <h1>Aletheia</h1>
 
 <h3>AI Reliability, Evaluation, Monitoring & Observability Platform</h3>
@@ -15,7 +13,7 @@
   <a href="#architecture"><strong>Architecture</strong></a> ·
   <a href="#features"><strong>Features</strong></a> ·
   <a href="#key-improvements-over-base-platform"><strong>Engineering Highlights</strong></a> ·
-  <a href="#screenshots"><strong>Screenshots</strong></a>
+  <a href="#screenshots--diagrams"><strong>Diagrams</strong></a>
 </p>
 
 <p>
@@ -45,7 +43,7 @@
 - [Architecture](#architecture)
 - [Key Improvements Over Base Platform](#key-improvements-over-base-platform)
 - [Engineering Contributions](#engineering-contributions)
-- [Screenshots](#screenshots)
+- [Screenshots & Diagrams](#screenshots--diagrams)
 - [Installation](#installation)
 - [Deployment](#deployment)
 - [Technical Skills Demonstrated](#technical-skills-demonstrated)
@@ -67,7 +65,7 @@ Aletheia exists to close that gap. It gives engineering teams a single place to:
 The platform is designed around a simple idea: LLM reliability isn't a one-time check, it's a continuous workflow that spans development, testing, and production monitoring.
 
 <div align="center">
-<img width="90%" alt="Aletheia workflow overview" src="https://raw.githubusercontent.com/yourusername/aletheia/main/docs/assets/workflow-overview-placeholder.png" />
+<img width="90%" alt="Aletheia reliability workflow diagram" src="docs/screenshots/workflow-overview.svg" />
 <p><em>Develop → Trace → Evaluate → Guard → Diff → Ship</em></p>
 </div>
 
@@ -76,7 +74,7 @@ The platform is designed around a simple idea: LLM reliability isn't a one-time 
 ## Features
 
 <div align="center">
-<img width="90%" alt="Aletheia feature grid" src="https://raw.githubusercontent.com/yourusername/aletheia/main/docs/assets/features-grid-placeholder.png" />
+<img width="90%" alt="Aletheia feature grid" src="docs/screenshots/features-grid.svg" />
 </div>
 
 <br/>
@@ -139,37 +137,10 @@ Tracing + Evaluation Pipeline
 
 </div>
 
-> _A rendered diagram (PNG/SVG) can replace this ASCII version — see `docs/screenshots/architecture-diagram-placeholder.png` below for the recruiter-facing visual._
-
-<div align="center">
-<img width="70%" alt="Aletheia architecture diagram" src="docs/screenshots/architecture-diagram-placeholder.png" />
-</div>
-
 ### Detailed Request Flow
 
 <div align="center">
-
-```
-┌──────────────────┐      ┌───────────────────┐      ┌──────────────────┐
-│   Instrumented    │      │      Aletheia      │      │    PostgreSQL     │
-│   LLM App (SDK)    │─────▶│   Ingestion API     │─────▶│   (via Prisma)     │
-└──────────────────┘      └───────────────────┘      └──────────────────┘
-                                     │
-                                     ▼
-                            ┌───────────────────┐
-                            │  Guardrail Sidecar  │
-                            │  (request/response   │
-                            │     interception)      │
-                            └───────────────────┘
-                                     │
-                                     ▼
-                            ┌───────────────────┐
-                            │   Next.js Web App    │
-                            │  (Traces, Evals,       │
-                            │   Datasets, Diffing)    │
-                            └───────────────────┘
-```
-
+<img width="70%" alt="Aletheia architecture diagram showing the flow from instrumented LLM app through ingestion API, guardrail sidecar, PostgreSQL, to the Next.js web app" src="docs/screenshots/architecture-diagram.svg" />
 </div>
 
 ---
@@ -220,33 +191,21 @@ Key contributions made during the Aletheia transformation, summarized in resume-
 
 ---
 
-## Screenshots
+## Screenshots & Diagrams
 
-> _Screenshots below are placeholders — replace with real captures once the UI is finalized._
+> _Live UI screenshots aren't included yet — the sections above and below contain real, rendered diagrams of the system instead. Once the app is deployed, replace this section with actual product screenshots (trace detail view, evaluation dashboard, regression diff view, guardrail configuration panel)._
 
 <table>
   <tr>
     <td align="center" width="50%">
-      <img src="docs/screenshots/trace-detail-placeholder.png" width="100%"/><br/>
-      <strong>Trace Detail View</strong><br/>
-      <sub>Nested spans for a single LLM call — retrieval, embedding, and generation steps in one timeline.</sub>
+      <img src="docs/screenshots/architecture-diagram.svg" width="100%"/><br/>
+      <strong>System architecture</strong><br/>
+      <sub>Request flow from the instrumented LLM app through ingestion, guardrails, storage, and the web app.</sub>
     </td>
     <td align="center" width="50%">
-      <img src="docs/screenshots/eval-dashboard-placeholder.png" width="100%"/><br/>
-      <strong>Evaluation Dashboard</strong><br/>
-      <sub>LLM-as-judge and code-based evaluator scores aggregated across a run.</sub>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" width="50%">
-      <img src="docs/screenshots/regression-diff-placeholder.png" width="100%"/><br/>
-      <strong>Regression Diff View</strong><br/>
-      <sub>Side-by-side comparison of two prompt versions against the same evaluation dataset.</sub>
-    </td>
-    <td align="center" width="50%">
-      <img src="docs/screenshots/guardrail-config-placeholder.png" width="100%"/><br/>
-      <strong>Guardrail Configuration</strong><br/>
-      <sub>Policy editor for the runtime guardrail sidecar — request/response interception rules.</sub>
+      <img src="docs/screenshots/workflow-overview.svg" width="100%"/><br/>
+      <strong>Reliability workflow</strong><br/>
+      <sub>The develop → trace → evaluate → guard → diff → ship loop every release moves through.</sub>
     </td>
   </tr>
 </table>
