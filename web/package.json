@@ -51,7 +51,7 @@
     "@dnd-kit/utilities": "^3.2.2",
     "@ferrucc-io/emoji-picker": "^0.0.47",
     "@heroicons/react": "^2.2.0",
-    "@hookform/resolvers": "^5.2.2",
+    "@hookform/resolvers": "^5.4.0",
     "@langchain/core": "^1.1.48",
     "@aletheia/ee": "workspace:*",
     "@aletheia/shared": "workspace:*",
