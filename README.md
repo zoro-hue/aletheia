@@ -32,7 +32,7 @@
 
 <br/>
 
-> **Provenance note:** Aletheia is a customized, rebranded, and extended derivative of an open-source LLM observability platform. It is **not** the official upstream project, and is **not** affiliated with or endorsed by its maintainers. See [Acknowledgements](#acknowledgements) for full details on what was inherited versus engineered for this project.
+> **Provenance note:** Aletheia is a customized, rebranded, and extended derivative of [Langfuse](https://github.com/langfuse/langfuse), an open-source LLM engineering platform. It is **not** the official Langfuse project, and is **not** affiliated with or endorsed by its maintainers. See [Acknowledgements](#acknowledgements) for full details on what was inherited versus engineered for this project.
 
 ---
 
@@ -196,7 +196,15 @@ Audited and removed dependencies tied to multi-tenant billing, telemetry reporti
 ### Error Handling Improvements
 Hardened ingestion and evaluation API paths with more defensive error handling, clearer failure states surfaced in the UI, and better handling of partial/malformed trace payloads.
 
-> **Engineering note:** the original platform provided the core data model, tracing pipeline, and UI scaffolding. The contributions above — guardrails, regression diffing, the reliability-workflow restructuring, and the dependency/billing cleanup — are the parts of this project I designed and implemented.
+### Platform Transformation
+- Removed all upstream branding across UI, navigation, metadata, dialogs, documentation references, and settings pages.
+- Removed external documentation redirects, support links, upgrade prompts, SaaS onboarding flows, and enterprise-oriented navigation.
+- Eliminated billing and subscription-related UI components that caused runtime errors in self-hosted deployments.
+- Simplified the platform into a portfolio-focused AI reliability engineering system.
+- Refactored settings and navigation structures to better align with single-user, self-hosted deployments.
+- Audited inherited dependencies and removed unnecessary SaaS-specific functionality.
+
+> **Engineering note:** the original platform provided the core data model, tracing pipeline, and UI scaffolding. The contributions above — guardrails, regression diffing, the reliability-workflow restructuring, the platform transformation, and the dependency/billing cleanup — are the parts of this project I designed and implemented.
 
 ---
 
@@ -205,6 +213,7 @@ Hardened ingestion and evaluation API paths with more defensive error handling, 
 Key contributions made during the Aletheia transformation, summarized in resume-ready form:
 
 - Re-architected a multi-tenant SaaS observability platform into a single-tenant, self-hosted reliability tool by removing billing, plan-gating, and usage-metering subsystems.
+- Stripped all upstream branding, navigation, documentation links, and SaaS onboarding flows across the UI, replacing them with a streamlined, single-purpose product experience.
 - Designed and implemented a **guardrail sidecar proxy** that intercepts LLM requests/responses at runtime and applies configurable validation, filtering, and safety policies without requiring changes to application code.
 - Built a **regression diffing engine** that compares evaluation outputs and scores across two prompt, model, or pipeline versions against a shared dataset, surfacing behavioral drift before deployment.
 - Restructured the product's information architecture around a "develop → trace → evaluate → guard → diff → ship" reliability workflow, replacing a general-purpose analytics dashboard layout.
@@ -287,11 +296,17 @@ docker compose up --build
 
 ### Containerized Deployment
 
-A `Dockerfile` and `docker-compose.yml` are included for containerized deployment to any environment supporting Docker (e.g., a VM, ECS, or a Kubernetes cluster via a Helm chart if you choose to extend one).
+A `Dockerfile` and Docker Compose configuration are included for containerized deployment to any environment supporting Docker (e.g., a VM, ECS, or a Kubernetes cluster via a Helm chart if you choose to extend one).
 
 ```bash
-docker compose -f docker-compose.prod.yml up -d
+# Standard deployment
+docker compose up -d
+
+# If you maintain a separate production compose file, reference it explicitly:
+# docker compose -f docker-compose.<your-prod-file>.yml up -d
 ```
+
+> Check the repository root for the exact compose file names available (e.g. `docker-compose.yml`, `docker-compose.dev.yml`) and adjust the command above accordingly — file names vary by environment and may be renamed as the project evolves.
 
 > This project is intended for self-hosted, single-tenant use. No cloud-hosted "Aletheia Cloud" offering, billing system, or managed service exists — those concerns were intentionally removed (see [Key Improvements](#key-improvements-over-base-platform)).
 
@@ -314,25 +329,27 @@ docker compose -f docker-compose.prod.yml up -d
 
 ## Acknowledgements
 
-Aletheia is built upon an open-source observability foundation and has been customized and extended for educational, portfolio, and research purposes. The original codebase provided the foundational tracing pipeline, data model, and UI scaffolding; the architecture, feature additions (guardrails, regression diffing), rebranding, and platform restructuring described in this README are my own work.
+Aletheia is built upon [Langfuse](https://github.com/langfuse/langfuse), an open-source LLM engineering platform, and has been customized and extended for educational, portfolio, and research purposes. The original codebase provided the foundational tracing pipeline, data model, and UI scaffolding; the architecture, feature additions (guardrails, regression diffing), rebranding, platform transformation, and reliability-workflow restructuring described in this README are my own work.
 
-This project is not affiliated with, endorsed by, or representative of the original open-source project or its maintainers. No original branding, trademarks, or marketing content are used here.
+This project is not affiliated with, endorsed by, or representative of Langfuse or its maintainers. No original Langfuse branding, trademarks, or marketing content are used here.
 
 ---
 
 ## License
 
-This project contains modifications of an open-source project licensed under the MIT License.
+This project is derived from [Langfuse](https://github.com/langfuse/langfuse), an open-source LLM engineering platform.
 
 ```
-Original copyright belongs to the upstream project and its contributors.
-Copyright (c) <upstream project name and years — see LICENSE>
+Original copyright:
+Copyright (c) 2022–2026 Langfuse GmbH
 
-Modifications and additions for Aletheia are provided for
-educational and portfolio purposes only.
+Licensed under the MIT License.
+
+Additional modifications and extensions for Aletheia:
+Copyright (c) 2026 Jayanth
 ```
 
-See [`LICENSE`](LICENSE) for full details, including the original copyright notice as required by the MIT License.
+See [`LICENSE`](LICENSE) for the full MIT License text, including the original copyright notice as required by its terms.
 
 <br/>
 
