@@ -13,7 +13,7 @@
   <a href="#architecture"><strong>Architecture</strong></a> ·
   <a href="#features"><strong>Features</strong></a> ·
   <a href="#key-improvements-over-base-platform"><strong>Engineering Highlights</strong></a> ·
-  <a href="#screenshots--diagrams"><strong>Diagrams</strong></a>
+  <a href="#diagrams"><strong>Diagrams</strong></a>
 </p>
 
 <p>
@@ -43,7 +43,7 @@
 - [Architecture](#architecture)
 - [Key Improvements Over Base Platform](#key-improvements-over-base-platform)
 - [Engineering Contributions](#engineering-contributions)
-- [Screenshots & Diagrams](#screenshots--diagrams)
+- [Diagrams](#diagrams)
 - [Installation](#installation)
 - [Deployment](#deployment)
 - [Technical Skills Demonstrated](#technical-skills-demonstrated)
@@ -64,18 +64,44 @@ Aletheia exists to close that gap. It gives engineering teams a single place to:
 
 The platform is designed around a simple idea: LLM reliability isn't a one-time check, it's a continuous workflow that spans development, testing, and production monitoring.
 
-<div align="center">
-<img width="90%" alt="Aletheia reliability workflow diagram" src="docs/screenshots/workflow-overview.svg" />
-<p><em>Develop → Trace → Evaluate → Guard → Diff → Ship</em></p>
-</div>
+```mermaid
+flowchart LR
+    A[Develop] --> B[Trace]
+    B --> C[Evaluate]
+    C --> D[Guard]
+    D --> E[Diff]
+    E --> F[Ship]
+```
+
+<p align="center"><em>Each release moves through this loop before reaching production.</em></p>
 
 ---
 
 ## Features
 
-<div align="center">
-<img width="90%" alt="Aletheia feature grid" src="docs/screenshots/features-grid.svg" />
-</div>
+```mermaid
+flowchart TD
+    Aletheia["Aletheia"]
+    Aletheia --> Observability["Observability"]
+    Aletheia --> Quality["Quality & evaluation"]
+    Aletheia --> Reliability["Reliability engineering"]
+
+    Observability --> O1[LLM tracing]
+    Observability --> O2[Session analytics]
+    Observability --> O3[User analytics]
+    Observability --> O4[Monitoring]
+
+    Quality --> Q1[Prompt management]
+    Quality --> Q2[Playground]
+    Quality --> Q3[Evaluators]
+    Quality --> Q4[Human annotation]
+    Quality --> Q5[Datasets]
+    Quality --> Q6[Experiments]
+
+    Reliability --> R1[Guardrails]
+    Reliability --> R2[Regression diffing]
+    Reliability --> R3[Reliability workflows]
+```
 
 <br/>
 
@@ -123,25 +149,22 @@ The platform is designed around a simple idea: LLM reliability isn't a one-time 
 
 ### High-Level Flow
 
-<div align="center">
-
+```mermaid
+flowchart TD
+    A[Frontend - Next.js] --> B[Backend API - Node.js]
+    B --> C[PostgreSQL]
+    B --> D[Tracing + evaluation pipeline]
 ```
-   Frontend (Next.js)
-          ↓
-   Backend API (Node.js)
-          ↓
-       PostgreSQL
-          ↓
-Tracing + Evaluation Pipeline
-```
-
-</div>
 
 ### Detailed Request Flow
 
-<div align="center">
-<img width="70%" alt="Aletheia architecture diagram showing the flow from instrumented LLM app through ingestion API, guardrail sidecar, PostgreSQL, to the Next.js web app" src="docs/screenshots/architecture-diagram.svg" />
-</div>
+```mermaid
+flowchart TD
+    App["Instrumented LLM app<br/>(Aletheia SDK)"] --> API["Aletheia ingestion API<br/>(Node.js backend)"]
+    API --> Guard["Guardrail sidecar<br/>(request/response interception)"]
+    Guard --> DB["PostgreSQL<br/>(via Prisma)"]
+    DB --> Web["Next.js web app<br/>(traces, evals, datasets, diffing)"]
+```
 
 ---
 
@@ -191,24 +214,26 @@ Key contributions made during the Aletheia transformation, summarized in resume-
 
 ---
 
-## Screenshots & Diagrams
+## Diagrams
 
-> _Live UI screenshots aren't included yet — the sections above and below contain real, rendered diagrams of the system instead. Once the app is deployed, replace this section with actual product screenshots (trace detail view, evaluation dashboard, regression diff view, guardrail configuration panel)._
+> _No product screenshots are included — the platform's UI isn't deployed publicly. The diagrams below (rendered natively by GitHub via mermaid) illustrate the system's architecture and workflow instead. Once a live deployment exists, this section can be replaced with real screenshots of the trace detail view, evaluation dashboard, regression diff view, and guardrail configuration panel._
 
-<table>
-  <tr>
-    <td align="center" width="50%">
-      <img src="docs/screenshots/architecture-diagram.svg" width="100%"/><br/>
-      <strong>System architecture</strong><br/>
-      <sub>Request flow from the instrumented LLM app through ingestion, guardrails, storage, and the web app.</sub>
-    </td>
-    <td align="center" width="50%">
-      <img src="docs/screenshots/workflow-overview.svg" width="100%"/><br/>
-      <strong>Reliability workflow</strong><br/>
-      <sub>The develop → trace → evaluate → guard → diff → ship loop every release moves through.</sub>
-    </td>
-  </tr>
-</table>
+**System architecture**
+
+```mermaid
+flowchart TD
+    App["Instrumented LLM app<br/>(Aletheia SDK)"] --> API["Aletheia ingestion API<br/>(Node.js backend)"]
+    API --> Guard["Guardrail sidecar<br/>(request/response interception)"]
+    Guard --> DB["PostgreSQL<br/>(via Prisma)"]
+    DB --> Web["Next.js web app<br/>(traces, evals, datasets, diffing)"]
+```
+
+**Reliability workflow**
+
+```mermaid
+flowchart LR
+    A[Develop] --> B[Trace] --> C[Evaluate] --> D[Guard] --> E[Diff] --> F[Ship]
+```
 
 ---
 
