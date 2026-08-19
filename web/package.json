@@ -182,7 +182,7 @@
     "@playwright/test": "^1.57.0",
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@storybook/addon-a11y": "10.3.6",
+    "@storybook/addon-a11y": "10.5.7",
     "@storybook/addon-docs": "10.3.6",
     "@storybook/addon-vitest": "10.3.6",
     "@storybook/nextjs-vite": "10.3.6",
